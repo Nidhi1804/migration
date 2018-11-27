@@ -1,4 +1,4 @@
-# migration
+# Migration
 Migration script to migrate db from MYSQL to MongoDB.
 ### Prerequisites
 ```
