@@ -4,6 +4,11 @@ Migration script to migrate db from MYSQL to MongoDB.
 Nodejs 
 pm2 - 'npm install -g pm2'
 ### Installing
+```
+Give the example
+``````
+Give the example
+```
 run git clone https://github.com/Nidhi1804/migration.git
 npm install 
 import mysql db using ./demo_db.sql
