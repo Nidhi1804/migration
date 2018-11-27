@@ -2,6 +2,7 @@ const MongoClient   = require( 'mongodb' ).MongoClient;
 const mysql         = require('mysql');
 const Q             = require('q');
 const async         = require("async");
+const appConfig     = require('./appConfig');
 const cron 			= require('node-cron');
 
 // credentials
@@ -9,8 +10,6 @@ const mysqlServerUser = 'root';
 const mysqlServerPassword = '';
 const mysqlServerHost = '127.0.0.1';
 const mysqlServerDBName = 'demo_db';
-const MONGO_DB_URL = 'mongodb://nidhi:nidhi123@ds151222.mlab.com:51222/demo_db';
-
 
 async function migrationScript() {
 	console.log('Migrating data from demo_db MySQL database to its MongoDB' + '\n');
@@ -239,12 +238,12 @@ function mapImagesOfGallery(mapedGallery, mongoDBConnection) {
 /* Database connection and configuration functions */
 function getMongoDBConnection() {
 	let deferred = Q.defer();
-	MongoClient.connect(MONGO_DB_URL,{useNewUrlParser: true}, function( err, db ) {
+	MongoClient.connect(appConfig.MONGO_DB_URL,{useNewUrlParser: true}, function( err, db ) {
 		if (err) {
 			console.log('Unable to connect to MongoDB Server. Error: ' + err);
 			return deferred.reject(err);
 		}
-		console.log('connected to database :: ' + MONGO_DB_URL);
+		console.log('connected to database :: ' + appConfig.MONGO_DB_URL);
 		return deferred.resolve(db);
 	});
 	return deferred.promise;
